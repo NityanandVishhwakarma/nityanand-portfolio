@@ -78,11 +78,18 @@ st.markdown("""
         border: 1px solid #00d2ff !important;
         border-radius: 5px !important;
     }
+
+    /* Circular Image Styling */
+    [data-testid="stImage"] img {
+        border-radius: 50%;
+        border: 4px solid #00d2ff;
+        box-shadow: 0px 0px 15px rgba(0, 210, 255, 0.3);
+    }
     </style>
-    """, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
+
 # 3. Sidebar Navigation
 st.sidebar.title("💎 Portfolio Menu")
-# Added "Resume" to the navigation
 page = st.sidebar.radio("Navigate", ["Home", "AI & Data Projects", "Resume", "Skills & Certs", "Feedback & Contact"])
 
 # --- HOME PAGE ---
@@ -90,28 +97,17 @@ if page == "Home":
     col1, col2 = st.columns([1, 2], gap="large")
     
     with col1:
-        # CORRECTION 1: Path ko handle karne ke liye hamesha standard "/" use karein
-        # Photo Section - Professional path handling
-        photo_path = "https://i.postimg.cc/vmCrwxsG/myphoto.jpg"
-        
-        if os.path.exists( photo_path):
-            st.image( photo_path, use_container_width=True)
-        else:
-            # IMPROVEMENT: Photo na milne par placeholder ko thoda aur clean dikhaya hai
-            st.markdown("""
-                <div style='background:rgba(255,255,255,0.05); padding:60px; border-radius:15px; text-align:center; border: 1px dashed #00d2ff;'>
-                    <h2 style='color:#00d2ff; margin:0;'>📸</h2>
-                    <p style='color:#00d2ff; font-size:0.8em;'>Photo Placeholder</p>
-                </div>
-            """, unsafe_allow_html=True)
+        # ✅ FIX: Directly load the internet URL without os.path.exists
+        photo_url = "https://i.postimg.cc/vmCrwxsG/myphoto.jpg"
+        st.image(photo_url, use_container_width=True)
         
         # Education details with LPU highlight
         st.markdown("""
-        <div class="college-tag" style="margin-top:20px;">
+        <div class="content-box" style="margin-top:20px; padding: 15px;">
             <b style="color:#00d2ff;">🎓 Education</b><br>
             <b>B.Tech - Computer Science</b><br>
             Lovely Professional University (LPU)<br>
-            <span style="font-size:0.9em;">Class of 2021</span>
+            <span style="font-size:0.9em; color: #92fe9d;">Class of 2021</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -125,7 +121,7 @@ if page == "Home":
             </h1>
         """, unsafe_allow_html=True)
         
-        # Subheader with Typewriter feel or clean professional look
+        # Subheader 
         st.markdown("""
             <h3 style='color: #e0e0e0; font-weight: 400; margin-top: -10px;'>
                 Data Engineer <span style='color: #00d2ff;'>|</span> 
@@ -134,16 +130,15 @@ if page == "Home":
             </h3>
         """, unsafe_allow_html=True)
         
-        # Visual Tech Stack Badges (Attractive icons substitute)
+        # Visual Tech Stack Badges
         st.markdown("""
-            <div style="display: flex; gap: 10px; margin-top: 10px; margin-bottom: 20px;">
-                <span style="background: rgba(0, 210, 255, 0.1); border: 1px solid #00d2ff; color: #00d2ff; padding: 2px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">⚡ ETL PIPELINES</span>
-                <span style="background: rgba(146, 254, 157, 0.1); border: 1px solid #92fe9d; color: #92fe9d; padding: 2px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">📊 DAX & VISUALIZATION</span>
-                <span style="background: rgba(255, 255, 255, 0.1); border: 1px solid #ffffff; color: #ffffff; padding: 2px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">🤖 GEN-AI & LLM</span>
+            <div style="display: flex; gap: 10px; margin-top: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <span style="background: rgba(0, 210, 255, 0.1); border: 1px solid #00d2ff; color: #00d2ff; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">⚡ ETL PIPELINES</span>
+                <span style="background: rgba(146, 254, 157, 0.1); border: 1px solid #92fe9d; color: #92fe9d; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">📊 DAX & VISUALIZATION</span>
+                <span style="background: rgba(255, 255, 255, 0.1); border: 1px solid #ffffff; color: #ffffff; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">🤖 GEN-AI & LLM</span>
             </div>
         """, unsafe_allow_html=True)
 
-        # Aapka existing Attractive Intro yahan se start hoga
         st.markdown("""
         <div class="content-box">
             <h3 style="margin-top: 0; color: #00d2ff;">Bridging Data & AI with Streamlit 🚀</h3>
@@ -161,6 +156,7 @@ if page == "Home":
         """, unsafe_allow_html=True)
         
         st.success("🎯 Goal: Leveraging Cloud & AI to solve real-world data challenges.")
+
 # --- PROJECTS PAGE ---
 elif page == "AI & Data Projects":
     st.title("Technical Showcase 🚀")
@@ -200,10 +196,9 @@ elif page == "AI & Data Projects":
     # 2. AI Innovations
     st.header("🤖 AI Innovations")
     
-    # Automated AI Data Analyst
     st.markdown("""
     <div class="content-box">
-        <h3>🧠 Automated AI Data Analyst <span class="ai-badge">GEN-AI</span></h3>
+        <h3>🧠 Automated AI Data Analyst <span style="color:#92fe9d; font-size:14px;">[GEN-AI]</span></h3>
         <p><b>Objective:</b> To automate the repetitive Exploratory Data Analysis (EDA) phase using Gemini API.</p>
         <ul>
             <li><b>LLM Core:</b> Integrated <b>Google Gemini API</b> to act as a virtual consultant that explains data trends in natural language.</li>
@@ -213,10 +208,9 @@ elif page == "AI & Data Projects":
     </div>
     """, unsafe_allow_html=True)
 
-    # UPSC SuperApp
     st.markdown("""
     <div class="content-box">
-        <h3>🎓 UPSC SuperApp <span class="ai-badge">NLP & RAG</span></h3>
+        <h3>🎓 UPSC SuperApp <span style="color:#92fe9d; font-size:14px;">[NLP & RAG]</span></h3>
         <p><b>Objective:</b> A strategic AI tool built specifically for civil services aspirants.</p>
         <ul>
             <li><b>Smart Summarization:</b> Built a RAG-based pipeline using <b>LangChain</b> to convert bulky PDFs into structured notes.</li>
@@ -226,10 +220,9 @@ elif page == "AI & Data Projects":
     </div>
     """, unsafe_allow_html=True)
 
-    # VidiGraph AI
     st.markdown("""
     <div class="content-box">
-        <h3>🎥 VidiGraph AI <span class="ai-badge">Generative Media</span></h3>
+        <h3>🎥 VidiGraph AI <span style="color:#92fe9d; font-size:14px;">[Generative Media]</span></h3>
         <p><b>Objective:</b> To transform text-based prompts into engaging animated visual content.</p>
         <ul>
             <li><b>Dynamic Animation:</b> Uses Python libraries to generate automated graphics based on user input.</li>
@@ -268,7 +261,6 @@ elif page == "Resume":
 elif page == "Skills & Certs":
     st.title("Expertise & Qualifications 🎓")
     
-    # 1. Technical Proficiency with Progress Bars
     st.subheader("Technical Proficiency")
     col_s1, col_s2 = st.columns(2, gap="large")
     
@@ -290,7 +282,6 @@ elif page == "Skills & Certs":
 
     st.divider()
 
-    # 2. Education & Certifications
     c1, c2 = st.columns(2, gap="medium")
     with c1:
         st.markdown(f"""
@@ -317,7 +308,6 @@ elif page == "Skills & Certs":
         </div>
         """, unsafe_allow_html=True)
 
-    # 3. Core Competencies (Bonus Section)
     st.subheader("Core Competencies")
     st.markdown("""
     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
@@ -329,8 +319,7 @@ elif page == "Skills & Certs":
     </div>
     """, unsafe_allow_html=True)
     
-    
-    # --- FEEDBACK & CONTACT PAGE ---
+# --- FEEDBACK & CONTACT PAGE ---
 elif page == "Feedback & Contact":
     st.title("Connect & Feedback 🤝")
     col_a, col_b = st.columns(2)
@@ -355,8 +344,4 @@ elif page == "Feedback & Contact":
             <button type="submit" style="background:#00d2ff; color:black; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer; width:100%;">Send Message</button>
         </form>
         """
-
         st.markdown(feedback_form, unsafe_allow_html=True)
-
-
-
