@@ -94,8 +94,8 @@ if page == "Home":
         # Photo Section - Professional path handling
         photo_path = "https://i.postimg.cc/vmCrwxsG/myphoto.jpg"
         
-        if os.path.exists(photo_path):
-            st.image(photo_path, use_container_width=True)
+        if os.path.exists(https://i.postimg.cc/vmCrwxsG/myphoto.jpg):
+            st.image(https://i.postimg.cc/vmCrwxsG/myphoto.jpg, use_container_width=True)
         else:
             # IMPROVEMENT: Photo na milne par placeholder ko thoda aur clean dikhaya hai
             st.markdown("""
@@ -357,4 +357,5 @@ elif page == "Feedback & Contact":
         """
 
         st.markdown(feedback_form, unsafe_allow_html=True)
+
 
