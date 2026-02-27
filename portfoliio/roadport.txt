@@ -1,0 +1,9 @@
+my_portfolio/
+├── .streamlit/
+│   └── config.toml      # (Optional) Theme settings ke liye
+├── pages/               # Is folder mein extra pages honge
+│   ├── 1_Projects.py
+│   ├── 2_Skills.py
+│   └── 3_Contact.py
+└── Home.py              # Ye aapka main entry point hoga
+C:/Users/acer/OneDrive/Desktop/portfoliio/myphoto.jpeg
