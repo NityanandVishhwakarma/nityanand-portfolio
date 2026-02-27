@@ -92,7 +92,7 @@ if page == "Home":
     with col1:
         # CORRECTION 1: Path ko handle karne ke liye hamesha standard "/" use karein
         # Photo Section - Professional path handling
-        photo_path = "C:/Users/acer/OneDrive/Desktop/portfoliio/myphoto.jpeg"
+        photo_path = "https://github.com/NityanandVishhwakarma/nityanand-portfolio/blob/main/portfoliio/myphoto.jpeg"
         
         if os.path.exists(photo_path):
             st.image(photo_path, use_container_width=True)
@@ -355,4 +355,5 @@ elif page == "Feedback & Contact":
             <button type="submit" style="background:#00d2ff; color:black; border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer; width:100%;">Send Message</button>
         </form>
         """
+
         st.markdown(feedback_form, unsafe_allow_html=True)
