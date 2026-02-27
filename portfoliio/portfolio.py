@@ -92,7 +92,7 @@ if page == "Home":
     with col1:
         # CORRECTION 1: Path ko handle karne ke liye hamesha standard "/" use karein
         # Photo Section - Professional path handling
-        photo_path = "https://github.com/NityanandVishhwakarma/nityanand-portfolio/blob/main/portfoliio/myphoto.jpeg"
+        photo_path = "https://i.postimg.cc/vmCrwxsG/myphoto.jpg"
         
         if os.path.exists(photo_path):
             st.image(photo_path, use_container_width=True)
@@ -357,3 +357,4 @@ elif page == "Feedback & Contact":
         """
 
         st.markdown(feedback_form, unsafe_allow_html=True)
+
