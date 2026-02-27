@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 
 # 1. Page Configuration
 st.set_page_config(page_title="Nityanand | Data Portfolio", page_icon="📊", layout="wide")
@@ -85,6 +84,27 @@ st.markdown("""
         border: 4px solid #00d2ff;
         box-shadow: 0px 0px 15px rgba(0, 210, 255, 0.3);
     }
+    
+    /* Custom Live Resume Button */
+    .live-resume-btn {
+        display: block;
+        background: linear-gradient(90deg, #00d2ff 0%, #3a7bd5 100%);
+        color: #ffffff !important;
+        text-align: center;
+        padding: 15px 30px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 30px;
+        text-decoration: none;
+        margin-top: 20px;
+        box-shadow: 0px 8px 15px rgba(0, 210, 255, 0.4);
+        transition: all 0.3s ease;
+    }
+    .live-resume-btn:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0px 12px 20px rgba(0, 210, 255, 0.6);
+        background: linear-gradient(90deg, #3a7bd5 0%, #00d2ff 100%);
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -97,11 +117,9 @@ if page == "Home":
     col1, col2 = st.columns([1, 2], gap="large")
     
     with col1:
-        # ✅ FIX: Directly load the internet URL without os.path.exists
         photo_url = "https://i.postimg.cc/vmCrwxsG/myphoto.jpg"
         st.image(photo_url, use_container_width=True)
         
-        # Education details with LPU highlight
         st.markdown("""
         <div class="content-box" style="margin-top:20px; padding: 15px;">
             <b style="color:#00d2ff;">🎓 Education</b><br>
@@ -112,7 +130,6 @@ if page == "Home":
         """, unsafe_allow_html=True)
 
     with col2:
-        # Title with Gradient Effect and Animation
         st.markdown("""
             <h1 style='text-align: left; font-size: 3rem; margin-bottom: 0px;'>
                 <span style='background: linear-gradient(to right, #00d2ff, #92fe9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
@@ -121,7 +138,6 @@ if page == "Home":
             </h1>
         """, unsafe_allow_html=True)
         
-        # Subheader 
         st.markdown("""
             <h3 style='color: #e0e0e0; font-weight: 400; margin-top: -10px;'>
                 Data Engineer <span style='color: #00d2ff;'>|</span> 
@@ -130,7 +146,6 @@ if page == "Home":
             </h3>
         """, unsafe_allow_html=True)
         
-        # Visual Tech Stack Badges
         st.markdown("""
             <div style="display: flex; gap: 10px; margin-top: 10px; margin-bottom: 20px; flex-wrap: wrap;">
                 <span style="background: rgba(0, 210, 255, 0.1); border: 1px solid #00d2ff; color: #00d2ff; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold;">⚡ ETL PIPELINES</span>
@@ -161,7 +176,6 @@ if page == "Home":
 elif page == "AI & Data Projects":
     st.title("Technical Showcase 🚀")
     
-    # 1. Visualization & Analytics
     st.header("📊 Visualization & Analytics")
     col_vis1, col_vis2 = st.columns(2)
     
@@ -193,7 +207,6 @@ elif page == "AI & Data Projects":
 
     st.divider()
 
-    # 2. AI Innovations
     st.header("🤖 AI Innovations")
     
     st.markdown("""
@@ -231,31 +244,27 @@ elif page == "AI & Data Projects":
     </div>
     """, unsafe_allow_html=True)
 
-# --- RESUME PAGE ---
+# --- RESUME PAGE (UPDATED WITH LIVE LINK) ---
 elif page == "Resume":
     st.title("Professional Resume 📄")
+    
     st.markdown("""
     <div class="content-box">
-        <h3>Resume Overview</h3>
-        <p>My resume covers my technical journey, including my <b>B.Tech from LPU</b>, core skills in <b>Data Engineering</b>, 
-        and specialized projects in <b>AI and Business Intelligence</b>.</p>
+        <h3>Interactive Digital Resume</h3>
+        <p>I have built a dedicated, interactive version of my resume using Streamlit. 
+        It covers my technical journey, core skills in <b>Data Engineering</b>, 
+        and detailed insights into my <b>AI and Business Intelligence</b> projects.</p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Path for your PDF
-    resume_file = "C:/Users/acer/OneDrive/Desktop/portfoliio/Nityanand_Resume.pdf"
-    
-    if os.path.exists(resume_file):
-        with open(resume_file, "rb") as f:
-            pdf_bytes = f.read()
-        st.download_button(
-            label="📥 Download My Resume (PDF)",
-            data=pdf_bytes,
-            file_name="Nityanand_Vishwakarma_Resume.pdf",
-            mime="application/pdf",
-        )
-    else:
-        st.error("⚠️ Resume file 'Nityanand_Resume.pdf' not found. Please place it in your folder.")
+    # Live URL Button
+    st.markdown("""
+        <a href="https://resumepy.streamlit.app/" target="_blank" class="live-resume-btn">
+            🚀 Click Here to View My Live Interactive Resume
+        </a>
+    """, unsafe_allow_html=True)
+
+    st.info("💡 Clicking the button will open my full Resume application in a new tab.")
 
 # --- SKILLS PAGE ---
 elif page == "Skills & Certs":
